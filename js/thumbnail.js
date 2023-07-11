@@ -1,5 +1,5 @@
-// eslint-disable-next-line no-unused-vars
-import { similarComment } from './data.js';
+/* eslint-disable no-unused-vars */
+import { similarDescription } from './data.js';
 
 // eslint-disable-next-line eol-last, no-unused-vars
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
