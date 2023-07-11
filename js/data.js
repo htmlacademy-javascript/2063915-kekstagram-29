@@ -68,7 +68,7 @@ const createDescription = (_, index) => ({
   )
 });
 
-const similarDescription = Array.from({length: DESCRIPTION_OF_THE_PHOTO}, createDescription);
+const similarDescription = () => Array.from({length: DESCRIPTION_OF_THE_PHOTO}, createDescription);
 
 // eslint-disable-next-line no-console
 
