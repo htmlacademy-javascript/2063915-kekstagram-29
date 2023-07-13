@@ -1,9 +1,9 @@
 import {getRandomArrayElement, getRandomInteger} from './util.js';
 
-// eslint-disable-next-line no-unused-vars
+
 const DESCRIPTION_OF_THE_PHOTO = 25;
 
-// eslint-disable-next-line no-unused-vars
+
 const PHOTO_MESSAGE = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -11,7 +11,7 @@ const PHOTO_MESSAGE = [
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
-// eslint-disable-next-line no-unused-vars
+
 const NAME_AUTHOR = [
   'Аврора',
   'Иван',
@@ -34,7 +34,7 @@ const NAME_AUTHOR = [
   'Сергей',
   'Денис'];
 
-// eslint-disable-next-line no-unused-vars
+
 const DESCRIPTION = ['Я пыталась заниматься йогой, но в позе лотоса уснула',
   'Я, возможно, никогда не буду лучшей, но я стараюсь быть лучшей твоей',
   'Если вам никто не улыбнулся утром, я подарю вам одну из своих',
@@ -56,7 +56,6 @@ const createComment = () => ({
 });
 
 
-// eslint-disable-next-line no-unused-vars
 const createDescription = (_, index) => ({
   id: index + 1,
   url: `photos/${index + 1}.jpg`,
@@ -70,6 +69,5 @@ const createDescription = (_, index) => ({
 
 const similarDescription = () => Array.from({length: DESCRIPTION_OF_THE_PHOTO}, createDescription);
 
-// eslint-disable-next-line no-console
 
 export {similarDescription};

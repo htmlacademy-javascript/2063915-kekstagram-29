@@ -5,7 +5,10 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-// eslint-disable-next-line no-unused-vars
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-export {getRandomArrayElement, getRandomInteger};
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const isEnterKey = (evt) => evt.key === 'Enter';
+
+export {getRandomArrayElement, getRandomInteger, isEscapeKey, isEnterKey};
