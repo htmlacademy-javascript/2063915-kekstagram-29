@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { similarDescription } from './data.js';
+import { openbigPicture } from './window-rendering.js';
 
 // eslint-disable-next-line eol-last, no-unused-vars
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -15,6 +16,8 @@ const createThumbnail = (data) => {
   // eslint-disable-next-line no-undef
   thumbnail.querySelector('.picture__comments').textContent = data.comments.length;
   thumbnail.querySelector('.picture__likes').textContent = data.likes;
+
+  thumbnail.addEventListener('click', () => openbigPicture(data));
 
   return thumbnail;
 };
