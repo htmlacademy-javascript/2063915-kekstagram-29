@@ -62,7 +62,7 @@ const createDescription = (_, index) => ({
   description: getRandomArrayElement(DESCRIPTION),
   likes: getRandomInteger(15, 200),
   comments: Array.from({
-    length: getRandomInteger(0, 5) },
+    length: getRandomInteger(6, 10) },
   createComment
   )
 });
