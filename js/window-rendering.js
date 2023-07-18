@@ -5,8 +5,6 @@ const bigPictureCloseElement = document.querySelector('.big-picture__cancel');
 
 const socialCommentCount = document.querySelector('.social__comment-count');
 
-const commentsLoader = document.querySelector('.comments-loader');
-
 const bigPictureImg = document.querySelector('.big-picture__img img');
 
 const likesCount = document.querySelector('.likes-count');
@@ -18,9 +16,18 @@ const socialComments = document.querySelector('.social__comments');
 
 const socialCption = document.querySelector('.social__caption');
 
+const bigPictureLoadButton = document.querySelector('.comments-loader');
+
+let showingComments = 0;
+let comments = [];
+const COMMENTS_COUNTER = 5;
+
+const fillCommentCounter = () => {
+  socialCommentCount.innerHTML = `${showingComments} из <span class="comments-count"> ${comments.length}</span> комментариев`;
+};
+
 
 const onDocumentKeydown = (evt) => {
-
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeBigPicture();
@@ -46,12 +53,31 @@ const drawComment = (comment) => {
 
   return commentLi;
 };
+const renderComments = () => {
+  const currentComments = comments.slice(showingComments, showingComments + COMMENTS_COUNTER);
+  showingComments = currentComments.length;
+  currentComments.forEach((item) => socialComments.append(drawComment(item)));
+  fillCommentCounter();
+
+  if (showingComments >= comments.length) {
+    bigPictureLoadButton.classList.add('hidden');
+    return;
+  }
+  bigPictureLoadButton.classList.remove('hidden');
+};
+
+
+const onCommentsLoadClick = (evt) => {
+  evt.preventDefault();
+  renderComments();
+};
 
 
 function openBigPicture (data) {
-  socialCommentCount.classList.add('hidden');
-  commentsLoader.classList.add('hidden');
   bigPictureOpenElement.classList.remove('hidden');
+  comments = data.comments;
+  renderComments();
+  bigPictureLoadButton.addEventListener('click', onCommentsLoadClick);
 
   bigPictureImg.src = data.url;
   likesCount.textContent = data.likes;
@@ -59,10 +85,12 @@ function openBigPicture (data) {
   socialComments.innerHTML = '';
   document.body.classList.add('modal-open');
 
+
   data.comments.forEach((comment) => {
     const commentHtml = drawComment(comment);
     socialComments.append(commentHtml);
   });
+
   bigPictureCloseElement.addEventListener('click', () => {
     closeBigPicture();
   });
@@ -74,6 +102,8 @@ function openBigPicture (data) {
 function closeBigPicture () {
   bigPictureOpenElement.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  comments = [];
+  showingComments = 0;
 
   document.removeEventListener('keydown', onDocumentKeydown);
 }
