@@ -52,7 +52,7 @@ const addFormAction = () => {
   effectsField.addEventListener('change', onEffectsFieldChange);
   form.addEventListener('submit', onFormSubmit);
   addValidator();
-  //createSlider();
+  createSlider();
   activateScale();
 };
 
