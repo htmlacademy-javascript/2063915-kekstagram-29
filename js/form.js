@@ -19,7 +19,6 @@ const onDocumentKeydown = (evt) => {
 };
 
 const openModal = () => {
-  createSlider();
   overlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
@@ -51,9 +50,9 @@ const addFormAction = () => {
   cancelButton.addEventListener('click', onCancelButtonclick);
   effectsField.addEventListener('change', onEffectsFieldChange);
   form.addEventListener('submit', onFormSubmit);
+  activateScale();
   addValidator();
   createSlider();
-  activateScale();
 };
 
 export {addFormAction};
