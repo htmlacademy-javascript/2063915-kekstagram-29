@@ -1,10 +1,13 @@
 import {addValidator, resetPristine, validatePristine} from './form-validate.js';
+import {changeEffect, resetFilter, createSlider} from './effects.js';
+import {activateScale, resetScale} from './scaling.js';
 
 const form = document.querySelector('.img-upload__form');
 const submitButton = document.querySelector('.img-upload__submit');
 const overlay = document.querySelector('.img-upload__overlay');
 const cancelButton = document.querySelector('#upload-cancel');
 const fileField = document.querySelector('#upload-file');
+const effectsField = document.querySelector('.effects');
 
 
 const onDocumentKeydown = (evt) => {
@@ -23,6 +26,7 @@ const openModal = () => {
 
 const onCancelButtonclick = () => closeModal();
 const onFileInputChange = () => openModal();
+const onEffectsFieldChange = (evt) => changeEffect(evt);
 
 const onFormSubmit = (evt) => {
   evt.preventDefault();
@@ -33,6 +37,8 @@ const onFormSubmit = (evt) => {
 
 function closeModal() {
   form.reset();
+  resetScale();
+  resetFilter();
   resetPristine();
   overlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
@@ -42,8 +48,11 @@ function closeModal() {
 const addFormAction = () => {
   fileField.addEventListener('change', onFileInputChange);
   cancelButton.addEventListener('click', onCancelButtonclick);
+  effectsField.addEventListener('change', onEffectsFieldChange);
   form.addEventListener('submit', onFormSubmit);
+  activateScale();
   addValidator();
+  createSlider();
 };
 
 export {addFormAction};
