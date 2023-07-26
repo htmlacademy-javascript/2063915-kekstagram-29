@@ -9,7 +9,9 @@ const getRandomInteger = (a, b) => {
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-const isEnterKey = (evt) => evt.key === 'Enter';
+function isEnterKey(evt) {
+  return evt.key === 'Enter';
+}
 
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
