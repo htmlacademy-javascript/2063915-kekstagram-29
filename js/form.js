@@ -1,8 +1,9 @@
-import {addValidator, resetPristine, validatePristine} from './form-validate.js';
 import {changeEffect, resetFilter, createSlider} from './effects.js';
 import {activateScale, resetScale} from './scaling.js';
+import {addValidator, resetPristine, validatePristine} from './form-validate.js';
 import { sendData } from './api.js';
 import {renderFailMessage, renderSuccessMessage} from './messages.js';
+import {loadImg} from './setup-img.js';
 
 const GET_URL = 'https://28.javascript.pages.academy/kekstagram';
 const form = document.querySelector('.img-upload__form');
@@ -25,20 +26,24 @@ const onSendFail = () => {
 
 const onDocumentKeydown = (evt) => {
   if(evt.key === 'Escape' && !evt.target.closest('.text__hashtags') &&
-  !evt.target.closest('.text__description')) {
+  !evt.target.closest('.text__description') && !document.querySelector('.error')) {
     evt.preventDefault();
     closeModal();
   }
 };
 
-const openModal = () => {
+function openModal() {
   overlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
+}
+
+const onCancelButtonClick = () => closeModal();
+const onFileInputChange = (evt) => {
+  openModal();
+  loadImg(evt);
 };
 
-const onCancelButtonclick = () => closeModal();
-const onFileInputChange = () => openModal();
 const onEffectsFieldChange = (evt) => changeEffect(evt);
 
 const onFormSubmit = (evt) => {
@@ -48,7 +53,6 @@ const onFormSubmit = (evt) => {
     sendData(GET_URL, onSendSuccess, onSendFail, new FormData(evt.target));
   }
 };
-
 
 function closeModal() {
   form.reset();
@@ -62,7 +66,7 @@ function closeModal() {
 
 const addFormAction = () => {
   fileField.addEventListener('change', onFileInputChange);
-  cancelButton.addEventListener('click', onCancelButtonclick);
+  cancelButton.addEventListener('click', onCancelButtonClick);
   effectsField.addEventListener('change', onEffectsFieldChange);
   form.addEventListener('submit', onFormSubmit);
   activateScale();
@@ -71,4 +75,3 @@ const addFormAction = () => {
 };
 
 export {addFormAction};
-
