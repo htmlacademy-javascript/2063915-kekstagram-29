@@ -65,3 +65,4 @@ const renderSuccessMessage = () => {
 };
 
 export {renderFailMessage, renderSuccessMessage};
+
