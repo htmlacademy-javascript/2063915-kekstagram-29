@@ -28,14 +28,14 @@ const onBigPictureCloseClick = (evt) => {
 };
 
 const fillCommentCounter = () => {
-  bigPictureCommentsCounter.innerHTML = `${showingComments} из <span class="comments-count"> ${comments.length}</span> комментариев`;
+  bigPictureCommentsCounter.innerHTML = `${showingComments} из <span class="comments-count">${comments.length}</span> комментариев`;
 };
 
 const createComment = (comment) => {
   const newComment = commentTemplate.cloneNode(true);
   const img = newComment.querySelector('img');
   img.src = comment.avatar;
-  img.alt = comment.message;
+  img.alt = comment.name;
   newComment.querySelector('p').textContent = comment.message;
   return newComment;
 };
