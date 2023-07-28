@@ -1,6 +1,7 @@
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 const imgSetup = document.querySelector('.img-upload__preview img');
+const effectsPreview = document.querySelectorAll('.effects__preview');
 
 const loadImg = (evt) => {
   const file = evt.target.files[0];
@@ -9,7 +10,11 @@ const loadImg = (evt) => {
 
   if(matches) {
     //ссылка на содержимое
-    imgSetup.src = URL.createObjectURL(file);
+    const url = URL.createObjectURL(file);
+    imgSetup.src = url;
+    effectsPreview.forEach((item) => {
+      item.style.backgroundImage = `url(${url})`;
+    });
   }
 };
 

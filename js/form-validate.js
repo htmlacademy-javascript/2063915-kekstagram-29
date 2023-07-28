@@ -9,6 +9,7 @@ const VALID_COMMENT_TEXT = 'Длина комментария не должна 
 
 const form = document.querySelector('.img-upload__form');
 const hashtagField = document.querySelector('.text__hashtags');
+const commentField = document.querySelector('.text__description');
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -20,6 +21,7 @@ const isValidComment = (comment) => comment.length <= MAX_COMMENTS_LENGTH;
 
 const createHashtagArray = (value) =>
   value.trim()
+    .toLowerCase()
     .split(' ')
     .filter((item) => item);
 
@@ -62,7 +64,7 @@ const addValidator = () => {
   );
 
   pristine.addValidator(
-    hashtagField,
+    commentField,
     isValidComment,
     VALID_COMMENT_TEXT,
   );

@@ -37,7 +37,8 @@ const UNIT = {
 };
 
 const imageElement = document.querySelector('.img-upload__preview img');
-const sliderField = document.querySelector('.img-upload__effect-level');
+const sliderConteiner = document.querySelector('.img-upload__effect-level');
+const sliderField = document.querySelector('.effect-level__slider');
 const effectLevel = document.querySelector('.effect-level__value');
 
 const createSlider = () => {
@@ -50,11 +51,12 @@ const createSlider = () => {
     step: 1,
     connect: 'lower',
   });
+  sliderConteiner.classList.add('hidden');
 };
 
 const resetFilter = () => {
   imageElement.style.filter = null;
-  sliderField.classList.add('hidden');
+  sliderConteiner.classList.add('hidden');
 };
 
 const changeEffect = ({target}) => {
@@ -63,7 +65,7 @@ const changeEffect = ({target}) => {
     return;
   }
 
-  sliderField.classList.remove('hidden');
+  sliderConteiner.classList.remove('hidden');
 
   const {effect, min, max, step} = RANGE_OPTIONS[target.value];
   const unit = UNIT[effect] ? UNIT[effect] : '';
